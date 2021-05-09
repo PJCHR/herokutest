@@ -1,0 +1,116 @@
+* {
+  margin: 0px;
+  padding: 0px;
+} /* padding: 0px; */
+ul,
+li {
+  list-style-type: none;
+} /* 리스트 앞에 점 제거 */
+a {
+  text-decoration: none;
+} /* 링크에 밑줄 제거 */
+
+.content_btn {
+  position: relative;
+  height: 10px;
+}
+
+.content_wrap {
+  display: flex;
+  position: relative;
+
+  /* 주축 방향 정렬 */
+  justify-content: center;
+
+  /* 교차축 방향 정렬 */
+  align-items: center;
+
+  /* transform:translate(50%, 50%); */
+  /* 1365px */
+  width: 100%;
+  /* height: 980px; */
+  min-height: 950px;
+  font-family: 'Noto Sans KR', 'Helvetica Neue', 'Apple SD Gothic Neo',
+    '맑은 고딕', 'Malgun Gothic', '돋움', dotum, sans-serif;
+}
+/* goods_trap, li .. width 크기 맞춰놨음 */
+.goods_trap {
+  position: absolute;
+  display: inline;
+  width: 1257px;
+  height: 850px;
+}
+.goods_trap > li {
+  display: inline-block;
+  width: 310px;
+  height: 420px;
+}
+.goods {
+  display: flex;
+  width: 283px;
+  height: 391px;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  background: #ddd;
+}
+
+.goods_img {
+  width: 283px;
+  height: 273px;
+  max-width: 283px;
+  max-height: 273px;
+  cursor: pointer;
+  /* background-image: url(item.imgsource); */
+  /* background-size: 283px 273px; */
+  /* object-fit: cover; */
+  border: 1px solid #222;
+}
+
+/* Products_info */
+.goods_info {
+  display: inline;
+  width: 271px;
+  height: 46px;
+  padding: 5px;
+  justify-content: left;
+  border: 1px solid #222;
+  font-size: 17px;
+  font-style: normal;
+  /* color: #111;
+  font-weight: normal; */
+}
+.space {
+  display: flex;
+  width: 281px;
+  height: 60px;
+  border: 1px solid #222;
+}
+.space1 {
+  display: flex;
+  width: 81px;
+  height: 55px;
+  justify-content: flex-end;
+  align-items: center;
+}
+.free_post_img {
+  width: 60px;
+  height: 30px;
+  background-image: url(/src/img/free.png);
+  background-size: 60px 30px;
+}
+
+.space2 {
+  display: flex;
+  width: 202px;
+  height: 55px;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.price_text {
+  /* position: relative; */
+  margin: 5px;
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+}
