@@ -50,7 +50,7 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => res.send('hello world'));
+// app.get('/', (req, res) => res.send('hello world'));
 
 app.get('/home', (req, res) => {
   const sql = 'SELECT * FROM test.product_info';

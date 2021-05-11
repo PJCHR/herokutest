@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PJCHR/coding.git"
+    "url": "git+https://github.com/PJCHR/herokutest.git"
   },
   "bugs": {
-    "url": "https://github.com/PJCHR/coding/issues/"
+    "url": "https://github.com/PJCHR/herokutest/issues/"
   },
-  "homepage": "https://github.com/PJCHR/coding#readme",
+  "homepage": "https://github.com/PJCHR/herokutest#readme",
   "author": "",
   "license": "ISC",
   "dependencies": {

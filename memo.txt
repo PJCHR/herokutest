@@ -1,0 +1,10 @@
+"heroku-postbuild": "cd client && npm install && npm run build",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PJCHR/herokutest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PJCHR/herokutest/issues/"
+  },
+  "homepage": "https://github.com/PJCHR/herokutest#readme",
