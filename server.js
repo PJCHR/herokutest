@@ -14,7 +14,7 @@ const jwtJSON = JSON.parse(fs.readFileSync("./jwt.json"));
 
 var cookieParser = require('cookie-parser');
 
-// const conf = JSON.parse(fs.readFileSync('./database.json'));
+
 
 var connection = mysql.createConnection({
   host: '127.0.0.1',
@@ -23,7 +23,6 @@ var connection = mysql.createConnection({
   port: 3306,
   database: 'test',
 });
-
 
 connection.connect();
 
@@ -41,6 +40,7 @@ const corsOptions = {
     }
   }
 }
+
 app.use(cors());
 app.use(helmet({
   contentSecurityPolicy: false,
@@ -167,7 +167,7 @@ app.delete('/logout',(req,res)=>{
   app.use(express.static(path.join(__dirname, 'client/build')));
   // Handle React routing, return all request to React app
   app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '/client', 'build', 'index.html'));
   });
  }
  
