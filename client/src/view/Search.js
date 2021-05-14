@@ -17,7 +17,7 @@ class Search extends Component {
   searchResult = () => {
     var query = this.getQueryString();
     console.log(query);
-    fetch(`http://localhost:8080/search?name=${query}`, {
+    fetch(`/search?name=${query}`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',

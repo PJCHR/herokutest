@@ -8,3 +8,8 @@
     "url": "https://github.com/PJCHR/herokutest/issues/"
   },
   "homepage": "https://github.com/PJCHR/herokutest#readme",
+
+  "heroku-postbuild": "cd client && npm install && npm run build",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "npm start",
+    "dev:client": "cd client && npm start",

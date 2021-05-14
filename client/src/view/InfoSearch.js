@@ -24,7 +24,7 @@ class InfoSearch extends Component {
         id: this.state.id,
         pw: this.state.pw,
       };
-       await fetch('http://localhost:8080/login', {
+       await fetch('/login', {
         
         method: 'post', //통신방법
         headers: {

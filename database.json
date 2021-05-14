@@ -1,0 +1,7 @@
+{
+    "host": "seafoodshop.cy6lowolzu4p.us-east-2.rds.amazonaws.com",
+    "user": "user",
+    "password": "seafoodshop01",
+    "port": "3306",
+    "database": "seafoodshop"
+}

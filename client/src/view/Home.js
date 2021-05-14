@@ -17,7 +17,7 @@ class Home extends Component {
   }
   
   onCall = () => {
-    fetch('http://localhost:8080/home', {
+    fetch('/home', {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -30,6 +30,7 @@ class Home extends Component {
 
   render() {
     const { products } = this.state;
+    console.log({products});
     return (
       <>
         <div className={HomeStyle.Home_wrap}>
@@ -41,11 +42,11 @@ class Home extends Component {
                 return (
                   <li>
                     <div className={ContentsStyle.goods}>
-                      <img className={ContentsStyle.goods_img} src={item.imgsource} alt="goods" />
+                      <img className={ContentsStyle.goods_img} src={item.imgsource} alt="goods" />               
                       <div className={ContentsStyle.goods_info}> <p className={ContentsStyle.goods_info_text}> {item.pdt_name} </p> </div>
                       <div className={ContentsStyle.space}>
                         <div className={ContentsStyle.space1}> <h1 className={ContentsStyle.free_post_img}/> </div>
-                        <div className={ContentsStyle.space2}> <p className={ContentsStyle.price_text}> {item.pdt_price} </p> </div>
+                        <div className={ContentsStyle.space2}> <p className={ContentsStyle.price_text}> {item.pdt_price+'원'} </p> </div>
                       </div>
                     </div>
                   </li>

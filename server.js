@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-var mysql = require('mysql'); // mysql 모듈
+
 
 const path = require('path');
 const helmet = require('helmet');
@@ -14,46 +14,31 @@ const jwtJSON = JSON.parse(fs.readFileSync("./jwt.json"));
 
 var cookieParser = require('cookie-parser');
 
-
-
-var connection = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'nodejs',
-  password: '985031',
-  port: 3306,
-  database: 'test',
-});
-
-connection.connect();
-
-// ** MIDDLEWARE ** //
-const whitelist = ['http://localhost:3000','http://localhost:8080','http://aaaqwe.herokuapp.com']
-const corsOptions = {
-  origin: function(origin, callback){
-    console:log("** Origin of request " + origin)
-    if (whitelist.indexOf(origin) != -1 || !origin) {
-      console.log("Origin acceptable")
-      callback(null, true)
-    } else {
-      console.log("Origin rejected")
-      callback(new Error('Not allwed by CORS'))
-    }
-  }
-}
-
 app.use(cors());
-app.use(helmet({
-  contentSecurityPolicy: false,
-}));
-app.use(cookieParser());
+app.use(helmet({contentSecurityPolicy: false,}));
 
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+var data = fs.readFileSync('./database.json')
+const conf = JSON.parse(data);
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host: conf.host,
+  user: conf.user,
+  password: conf.password,
+  port: conf.port,
+  database: conf.database
+})
+connection.connect();
+
 
 // app.get('/', (req, res) => res.send('hello world'));
 
 app.get('/home', (req, res) => {
-  const sql = 'SELECT * FROM test.product_info';
+  const sql = 'SELECT * FROM seafoodshop.product_info';
   connection.query(sql, (err, rows, fields) => {
     if (err) {
       console.log('DATA GET FAIL');
@@ -65,7 +50,7 @@ app.get('/home', (req, res) => {
 });
 app.get('/search', (req, res) => {
   const textName = req.query.name;
-  const sql = `SELECT * FROM test.product_info WHERE pdt_name LIKE '%${textName}%'`;
+  const sql = `SELECT * FROM seafoodshop.product_info WHERE pdt_name LIKE '%${textName}%'`;
   connection.query(sql, (err, rows, fields) => {
     if (err) {
       console.log('DB SEARCH FAIL');
@@ -94,7 +79,7 @@ app.post('/register', (req, res) => {
   const Name = req.body.name;
   const Hp = req.body.hp;
   console.log(Id, Pw, Email, Name, Hp);
-  const sql = `INSERT INTO test.user (id, pw, email, name, hp) VALUES ('${Id}', '${Pw}', '${Email}', '${Name}', '${Hp}')`;
+  const sql = `INSERT INTO seafoodshop.customer_info (id, pw, email, name, hp) VALUES ('${Id}', '${Pw}', '${Email}', '${Name}', '${Hp}')`;
   connection.query(sql, (err, rows, fields) => {
     if (err) {
       console.log('DB SAVE FAIL');
@@ -109,7 +94,7 @@ app.post('/login', (req, res) => {
   const Pw = crypto.createHmac('sha256', key.secret).update(req.body.inputPs).digest('base64'); //암호화,
   console.log(Id, Pw);
   let customerInfo = [];
-  const sql = `SELECT * FROM test.user WHERE id='${Id}' AND pw='${Pw}'`;
+  const sql = `SELECT * FROM seafoodshop.customer_info WHERE id='${Id}' AND pw='${Pw}'`;
   connection.query(sql, (err, rows, fields) => {
     if (err) {
       console.log(err);
@@ -167,13 +152,12 @@ app.delete('/logout',(req,res)=>{
   app.use(express.static(path.join(__dirname, 'client/build')));
   // Handle React routing, return all request to React app
   app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, '/client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   });
  }
  
-const port = process.env.port || 8080;
-app.listen(port, () => {
-  console.log(`The server is running on Port ${port}`);
-});
+const PORT = process.env.PORT || 5000;
+app.listen(PORT);
+console.log(`The server is running on PORT ${PORT}`);
 
 // connection.end();
